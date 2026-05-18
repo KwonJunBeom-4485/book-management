@@ -4,12 +4,14 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class BookRequestDto {
 
     @NotBlank(message = "도서명은 반드시 입력되어야 합니다.")
@@ -23,7 +25,7 @@ public class BookRequestDto {
     private Integer price;
 
     @Min(value = 1, message = "출판연도는 최소 1년입니다.")
-    private Integer publishYear;
+    private Integer publishedYear;
 
     private Boolean available;
 }

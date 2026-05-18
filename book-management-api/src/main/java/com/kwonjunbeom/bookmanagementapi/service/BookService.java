@@ -22,7 +22,7 @@ public class BookService {
     @Transactional
     public Long createBook(BookRequestDto requestDto) {
         int currentYear = LocalDate.now().getYear();
-        if(requestDto.getPublishYear() > currentYear) {
+        if(requestDto.getPublishedYear() > currentYear) {
             throw new IllegalArgumentException("출판연도는 현재 년도를 초과할 수 없습니다.");
         }
 
@@ -37,7 +37,7 @@ public class BookService {
                 .title(requestDto.getTitle())
                 .author(requestDto.getAuthor())
                 .price(requestDto.getPrice())
-                .publishedYear(requestDto.getPublishYear())
+                .publishedYear(requestDto.getPublishedYear())
                 .isbn(autoIsbn)
                 .active(true)
                 .available(true)
@@ -68,7 +68,7 @@ public class BookService {
                 requestDto.getTitle(),
                 requestDto.getAuthor(),
                 requestDto.getPrice(),
-                requestDto.getPublishYear(),
+                requestDto.getPublishedYear(),
                 requestDto.getAvailable()
         );
     }
