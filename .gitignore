@@ -1,0 +1,31 @@
+### IntelliJ IDEA & OS ###
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+.DS_Store
+*.pem
+
+### Backend (book-management-api) 제외 설정 ###
+**/book-management-api/.gradle/
+**/book-management-api/build/
+**/book-management-api/HELP.md
+**/book-management-api/bin/
+
+# 백엔드 보안 파일 (데이터베이스 비번 등)
+**/book-management-api/src/main/resources/application-*.yaml
+**/book-management-api/src/main/resources/application-*.properties
+
+### Frontend (book-management-front) 제외 설정 ###
+**/book-management-front/node_modules/
+**/book-management-front/.next/
+**/book-management-front/out/
+**/book-management-front/build/
+**/book-management-front/coverage/
+**/book-management-front/.env*.local
+
+# 로그 및 개발 키
+*.log*
+**.tsbuildinfo
+next-env.d.ts
