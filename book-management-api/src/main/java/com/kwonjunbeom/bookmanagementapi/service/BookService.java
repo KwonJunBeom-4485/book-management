@@ -82,5 +82,12 @@ public class BookService {
         System.out.println("도서 삭제 완료");
     }
 
+    public List<BookResponseDto> searchBooksByTitle(String title) {
+        // 하나의 검색어(title)를 제목 조건과 저자 조건에 각각 매핑
+        return repository.findByTitleContainingAndActiveTrueOrAuthorContainingAndActiveTrue(title, title).stream()
+                .map(BookResponseDto::fromEntity)
+                .collect(Collectors.toList());
+    }
+
 
 }

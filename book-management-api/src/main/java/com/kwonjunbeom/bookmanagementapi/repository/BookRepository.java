@@ -18,6 +18,8 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     List<Book> findByAuthorAndActiveTrue(String author);
 
     // 가장 최근 ISBN 가져오기 (이건 기존 쿼리 그대로 유지하되, active 조건만 살짝 추가해 줍니다)
-    @Query(value = "SELECT b.isbn FROM books b WHERE b.active = true ORDER BY b.isbn DESC LIMIT 1", nativeQuery = true)
+    @Query(value = "SELECT b.isbn FROM books b ORDER BY b.isbn DESC LIMIT 1", nativeQuery = true)
     Optional<String> findLastIsbn();
+
+    List<Book> findByTitleContainingAndActiveTrueOrAuthorContainingAndActiveTrue(String titleKeyword, String authorKeyword);
 }

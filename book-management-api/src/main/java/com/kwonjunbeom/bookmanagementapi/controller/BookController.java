@@ -17,10 +17,18 @@ import java.util.List;
 public class BookController {
     private final BookService service;
 
-    // 도서 전체 조회
     @GetMapping
-    public ResponseEntity<List<BookResponseDto>> findAll() {
-        List<BookResponseDto> books = service.getAllBooks();
+    public ResponseEntity<List<BookResponseDto>> findAll(
+            @RequestParam(value = "title", required = false) String title) {
+
+        List<BookResponseDto> books;
+
+        // 💡 쿼리 파라미터(?title=키워드)가 들어왔을 때와 없을 때를 분기 처리
+        if (title != null && !title.trim().isEmpty()) {
+            books = service.searchBooksByTitle(title);
+        } else {
+            books = service.getAllBooks();
+        }
 
         return ResponseEntity.ok(books);
     }
