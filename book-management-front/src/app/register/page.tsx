@@ -32,7 +32,7 @@ export default function BookRegisterPage() {
         };
 
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/books`, {
+            const res = await fetch(`/api/books`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload),

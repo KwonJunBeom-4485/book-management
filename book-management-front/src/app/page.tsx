@@ -28,8 +28,8 @@ export default function BookListPage() {
     const fetchBooks = (search: string) => {
         // search가 있으면 쿼리스트링(?title=)을 붙이고, 없으면 전체 조회
         const url = search
-            ? `${process.env.NEXT_PUBLIC_API_URL}/api/books?title=${encodeURIComponent(search)}`
-            : `${process.env.NEXT_PUBLIC_API_URL}/api/books`;
+            ? `/api/books?title=${encodeURIComponent(search)}`
+            : `/api/books`;
 
         fetch(url)
             .then(res => res.json())

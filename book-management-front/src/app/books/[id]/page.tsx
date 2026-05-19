@@ -37,7 +37,7 @@ export default function BookDetailPage({ params }: Props) {
         setIsNotFound(false);
         setIsServerError(null);
 
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/books/${id}`)
+        fetch(`/api/books/${id}`)
             .then(res => {
                 // 💡 조건 A: 잘못된 ID 접근(404) 시 -> notFound 상태 트리거
                 if (res.status === 404) {
@@ -84,7 +84,7 @@ export default function BookDetailPage({ params }: Props) {
     // 수정 요청 전송 (PUT)
     const handleUpdate = async (e: React.FormEvent) => {
         e.preventDefault();
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/books/${id}`, {
+        const res = await fetch(`/api/books/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -108,7 +108,7 @@ export default function BookDetailPage({ params }: Props) {
     // 삭제 요청 전송 (DELETE)
     const handleDelete = async () => {
         if (!confirm('정말 이 도서를 삭제하시겠습니까?')) return;
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/books/${id}`, { method: 'DELETE' });
+        const res = await fetch(`/api/books/${id}`, { method: 'DELETE' });
         if (res.status === 204) {
             alert('삭제 처리 되었습니다.');
             router.push('/');
