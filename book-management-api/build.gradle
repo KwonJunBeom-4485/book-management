@@ -35,3 +35,7 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+bootJar {
+    archiveFileName = 'book-management-api-0.0.1-SNAPSHOT.jar'
+}
