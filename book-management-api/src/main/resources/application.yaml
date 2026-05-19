@@ -12,9 +12,6 @@ management:
       show-details: always
 
 spring:
-  config:
-    activate:
-      on-profile: prod
   application:
     name: book-management-api
   datasource:
@@ -45,3 +42,46 @@ logging:
         orm:
           jdbc:
             bind: TRACE
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  # 💡 RDS 내장변수? 같은걸 활용해서 편하게 작업할려고 써봤다.
+  datasource:
+    url: jdbc:mysql://${RDS_HOSTNAME:${DB_HOST:localhost}}:${RDS_PORT:${DB_PORT:3306}}/${RDS_DB_NAME:${DB_NAME:bookdb}}?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${RDS_USERNAME:${DB_USER:root}}
+    password: ${RDS_PASSWORD:${DB_PASS:password}}
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+      idle-timeout: 300000
+
+  h2:
+    console:
+      enabled: false
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: false
+        default_batch_fetch_size: 100
+
+app:
+  cors:
+    allowed-origins: ${CORS_ORIGINS:http://localhost:3000}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
