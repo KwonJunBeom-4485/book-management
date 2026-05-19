@@ -59,7 +59,7 @@ spring:
   datasource:
     url: jdbc:mysql://${RDS_HOSTNAME:${DB_HOST:localhost}}:${RDS_PORT:${DB_PORT:3306}}/${RDS_DB_NAME:${DB_NAME:bookdb}}?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimezone=Asia/Seoul
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: ${RDS_USERNAME:${DB_USER:root}}
+    username: ${RDS_USERNAME:${DB_USER:admin}}
     password: ${RDS_PASSWORD:${DB_PASS:password}}
     hikari:
       maximum-pool-size: 10
