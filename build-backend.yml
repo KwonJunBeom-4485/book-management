@@ -11,6 +11,7 @@ phases:
 
   post_build:
     commands:
+      - cd ..
       - mkdir -p deploy-backend
       - cp book-management-api/build/libs/book-management-api-0.0.1-SNAPSHOT.jar deploy-backend/
       - cp book-management-api/Procfile deploy-backend/
