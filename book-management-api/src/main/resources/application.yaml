@@ -1,7 +1,20 @@
 server:
   port: 8080
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+      base-path: /
+  endpoint:
+    health:
+      show-details: always
+
 spring:
+  config:
+    activate:
+      on-profile: prod
   application:
     name: book-management-api
   datasource:
@@ -13,6 +26,8 @@ spring:
     console:
       enabled: true
       path: /h2-console
+      settings:
+        web-allow-others: true
   jpa:
     hibernate:
       ddl-auto: create-drop
